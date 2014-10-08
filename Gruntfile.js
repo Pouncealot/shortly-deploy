@@ -3,6 +3,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      bar: {
+        src: ['**.js','!node_modules/**.js',  '!test/**.js', '!Gruntfile.js'],
+        dest: 'MASSIVE.js',
+      },
     },
 
     mochaTest: {
@@ -21,12 +25,17 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'MASSIVE.js',
+        dest: 'MASSIVE.min.js'
+      }
     },
 
     jshint: {
-      files: [
-        // Add filespec list here
-      ],
+        files: ['**.js','!node_modules/**.js',  '!test/**.js', '!Gruntfile.js'],
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
@@ -93,8 +102,7 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('build', ['jshint','concat', 'uglify']);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
