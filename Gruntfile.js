@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       bar: {
-        src: ['public/client/**.js','public/lib/**.js'],
+        src: ['public/lib/**.js','public/client/**.js'],
         dest: 'MASSIVE.js',
       },
     },
