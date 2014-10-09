@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     concat: {
       bar: {
         src: ['public/lib/**.js','public/client/**.js'],
-        dest: 'MASSIVE.js',
+        dest: 'public/dist/MASSIVE.js',
       },
     },
 
@@ -29,8 +29,8 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'MASSIVE.js',
-        dest: 'MASSIVE.min.js'
+        src: 'public/dist/MASSIVE.js',
+        dest: 'public/dist/MASSIVE.min.js'
       }
     },
 
